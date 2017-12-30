@@ -1,0 +1,45 @@
+- name: Create Directory for VIM swapping
+  file:
+    path: "/tmp/vim/{{ item }}"
+    state: directory
+    mode: 0755
+  with_items: 
+    - backup
+    - swap
+    - undo
+
+# Install python requirements needed for various vim plugins
+- name: Install/Upgrade Python extensions
+  pip:
+    name: "{{ item.0 }}"
+    executable: "{{ item.1 }}"
+    extra_args: --upgrade
+  become: true
+  with_nested: 
+    - "{{ vim_python_requirements }}"
+    - "{{ vim_pip_executables }}"
+
+- name: Cloning VIM config repository
+  git:
+    repo: '{{ vim_remote_git_config_repo }}'
+    dest: '{{ vim_config_dir }}'
+    recursive: yes
+
+# Build command-t
+- name: Build command-t extension
+  shell: ruby extconf.rb && make
+  args:
+    chdir: '{{ vim_config_dir }}/bundle/command-t/ruby/command-t/ext/command-t' 
+
+# Colors
+- name: Export color environment variable
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bash_profile"
+    line: TERM=xterm-256color
+    create: yes
+
+- name: Create symlink to vimrc 
+  file:
+    src: "{{ vim_config_dir }}/vimrc"
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    state: link
