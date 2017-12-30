@@ -2,7 +2,9 @@ vim_repo_path: /opt/vim
 
 vim_git_executable: /usr/bin/git
 
-vim_git_repo: https://github.com/vim/vim
+# VIM Repos
+vim_remote_git_repo: https://github.com/vim/vim
+vim_remote_git_config_repo: https://github.com/windisch/vim.git
 
 # Vars needed for configure
 vim_configure_log: /tmp/vim_config_log
