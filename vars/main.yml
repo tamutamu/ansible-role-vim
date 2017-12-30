@@ -2,13 +2,30 @@ vim_repo_path: /opt/vim
 
 vim_git_executable: /usr/bin/git
 
+vim_git_repo: https://github.com/vim/vim
+
 # Vars needed for configure
 vim_configure_log: /tmp/vim_config_log
 vim_python3_config: /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
+# SLES: /usr/lib64/python3.4/config-3.4m
 vim_python2_config: /usr/lib/python2.7/config-x86_64-linux-gnu
+# SLES: /usr/lib64/python2.7/config-2.7m
 vim_ruby_path: /usr/bin/ruby
 
-vim_install_dir: /usr # TODO: Set prefix
+vim_python_requirements:
+  - pip
+  - jedi
+  - pylama
+  - flake8
+
+vim_pip_executables:
+  - pip2
+  - pip3
+
+# Defaults to the .vim subdirectory of $HOME
+vim_config_dir: "{{ ansible_env.HOME }}/.vim"
+
+vim_install_dir: /usr
 
 vim_configure: >
  ./configure  
@@ -16,9 +33,9 @@ vim_configure: >
  --enable-perlinterp=dynamic
  --enable-rubyinterp=dynamic
  --with-ruby-command={{ vim_ruby_path }}
- --enable-pythoninterp=dynamic
+ --enable-pythoninterp=yes
+ --enable-python3interp=yes
  --with-python-config-dir={{ vim_python2_config }}
- --enable-python3interp
  --with-python3-config-dir={{ vim_python3_config }}
  --enable-luainterp
  --with-luajit
