@@ -1,0 +1,19 @@
+- name: Cloning VIM repository
+  git:
+    repo: '{{ vim_remote_git_repo }}'
+    dest: '{{ vim_repo_path }}'
+
+- name: Run Configure
+  shell: "{{ vim_configure}}"
+  args:
+    chdir: '{{ vim_repo_path }}' 
+
+- name: Make VIM
+  make:
+    chdir: '{{ vim_repo_path }}' 
+
+- name: Install VIM
+  make:
+    target: install
+    chdir: '{{ vim_repo_path }}' 
+  become: yes

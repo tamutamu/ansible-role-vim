@@ -7,26 +7,9 @@
     msg: "No GIT available"
   when: vim_has_git.stat.exists == False
 
+- include_tasks: setup-ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
 
-- name: Install dependencies
-  apt: name={{item}} state=installed
-  with_items:
-    - libncurses-dev
-    - ncurses-term
-    - liblua5.1-dev 
-    - luajit
-    - libluajit-5.1-dev
-    - libperl-dev
-    - python-dev
-    - python-pip
-    - python3-dev
-    - python3-pip
-    - ruby-dev
-    - libatk1.0-dev 
-    - libx11-dev 
-    - libxpm-dev 
-    - libxt-dev
- 
 - name: Install/Upgrade Python extensions
   pip:
     name: "{{ item.0 }}"
@@ -55,32 +38,14 @@
 - debug: msg="VIM is build already"
   when: vim_is_build.stat.exists == True 
 
-- name: Cloning VIM repository
+# Build VIM is not already build
+- include_tasks: build-vim.yml
+  when: vim_is_build.stat.exists == False
+
+
+- name: Cloning VIM config repository
   git:
-    repo: 'https://github.com/vim/vim'
-    dest: '{{ vim_repo_path }}'
-  when: vim_is_build.stat.exists == False
-
-- name: Run Configure
-  shell: "{{ vim_configure}}"
-  args:
-    chdir: '{{ vim_repo_path }}' 
-  when: vim_is_build.stat.exists == False
-
-- name: Make VIM
-  make:
-    chdir: '{{ vim_repo_path }}' 
-  when: vim_is_build.stat.exists == False
-
-- name: Install VIM
-  make:
-    target: install
-    chdir: '{{ vim_repo_path }}' 
-  become: yes
-
-- name: Cloning VIM repository
-  git:
-    repo: 'https://github.com/windisch/vim.git'
+    repo: '{{ vim_remote_git_config_repo }}'
     dest: '{{ vim_config_dir }}'
     recursive: yes
 
