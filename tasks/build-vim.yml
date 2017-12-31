@@ -17,3 +17,4 @@
     target: install
     chdir: '{{ vim_repo_path }}' 
   become: yes
+  when: vim_global_installation == True
