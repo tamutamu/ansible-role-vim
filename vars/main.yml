@@ -11,13 +11,15 @@ vim_global_installation: True
 # Vars needed for configure
 vim_configure_log: /tmp/vim_config_log
 
+# Set up a dict that holds paths to the python configuration
+# libraries. The keys must be values of ansible_distribution
 vim_python_libs:
   Suse:
     py2: /usr/lib64/python2.7/config-2.7m
     py3: /usr/lib64/python3.4/config-3.4m
   Ubuntu:
-    py2: /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
-    py3: /usr/lib/python2.7/config-x86_64-linux-gnu
+    py2: /usr/lib/python2.7/config-x86_64-linux-gnu
+    py3: /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
 
 vim_ruby_path: /usr/bin/ruby
 
