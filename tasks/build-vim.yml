@@ -18,3 +18,10 @@
     chdir: '{{ vim_repo_path }}' 
   become: yes
   when: vim_global_installation == True
+
+- name: Remove configure log
+  file:
+    path: vim_configure_log
+    state: absent
+
+
