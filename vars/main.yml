@@ -6,12 +6,19 @@ vim_git_executable: /usr/bin/git
 vim_remote_git_repo: https://github.com/vim/vim
 vim_remote_git_config_repo: https://github.com/windisch/vim.git
 
+vim_global_installation: True
+
 # Vars needed for configure
 vim_configure_log: /tmp/vim_config_log
-vim_python3_config: /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
-# SLES: /usr/lib64/python3.4/config-3.4m
-vim_python2_config: /usr/lib/python2.7/config-x86_64-linux-gnu
-# SLES: /usr/lib64/python2.7/config-2.7m
+
+vim_python_libs:
+  RedHat:
+    py2: /usr/lib64/python2.7/config-2.7m
+    py3: /usr/lib64/python3.4/config-3.4m
+  Ubuntu:
+    py2: /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
+    py3: /usr/lib/python2.7/config-x86_64-linux-gnu
+
 vim_ruby_path: /usr/bin/ruby
 
 vim_python_requirements:
@@ -37,8 +44,8 @@ vim_configure: >
  --with-ruby-command={{ vim_ruby_path }}
  --enable-pythoninterp=yes
  --enable-python3interp=yes
- --with-python-config-dir={{ vim_python2_config }}
- --with-python3-config-dir={{ vim_python3_config }}
+ --with-python-config-dir={{ vim_python_libs[ansible_distribution].py2 }}
+ --with-python3-config-dir={{ vim_python_libs[ansible_distribution].py3 }}
  --enable-luainterp
  --with-luajit
  --enable-cscope
