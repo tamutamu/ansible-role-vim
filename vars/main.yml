@@ -46,8 +46,8 @@ vim_configure: >
  --with-ruby-command={{ vim_ruby_path }}
  --enable-pythoninterp=yes
  --enable-python3interp=yes
- --with-python-config-dir={{ vim_python_libs[ansible_distribution].py2 }}
- --with-python3-config-dir={{ vim_python_libs[ansible_distribution].py3 }}
+ --with-python-config-dir={{ vim_python_libs[ansible_os_family].py2 }}
+ --with-python3-config-dir={{ vim_python_libs[ansible_os_family].py3 }}
  --enable-luainterp
  --with-luajit
  --enable-cscope
