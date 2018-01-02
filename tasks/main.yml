@@ -8,7 +8,11 @@
   when: vim_has_git.stat.exists == False
 
 - include_tasks: setup-ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_os_family == "Ubuntu"
+
+- include_tasks: setup-suse.yml
+  when: ansible_os_family == "Suse"
+
 
 - name: Check whether VIM was already build
   stat:
