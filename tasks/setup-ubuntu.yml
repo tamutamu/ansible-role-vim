@@ -1,6 +1,8 @@
 - name: Install dependencies
   apt: name={{item}} state=installed
   with_items:
+    - gcc
+    - make
     - libncurses-dev
     - ncurses-term
     - liblua5.1-dev 
