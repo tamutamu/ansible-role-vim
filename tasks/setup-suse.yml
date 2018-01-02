@@ -1,0 +1,22 @@
+- name: Install dependencies
+  zypper: name={{item}} state=installed
+  with_items:
+    - gcc
+    - make
+    - libncurses6
+    - ncurses-devel
+    - ncurses-utils
+    - liblua5_2
+    - lua51-devel
+    - lua51-luajit
+    - lua51-luajit-devel
+    - libluajit-5_1-2
+    - python-devel
+    - python-pip
+    - python3-devel
+    - python3-pip
+    - ruby-devel
+    - libatk-1_0-0
+    - libX11-devel
+    - libXpm-devel
+    - libXt-devel
