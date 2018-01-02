@@ -20,6 +20,9 @@ vim_python_libs:
   Ubuntu:
     py2: /usr/lib/python2.7/config-x86_64-linux-gnu
     py3: /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
+  Darwin:
+    py2: /usr/local/Cellar/python/2.7.12_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/config/
+    py3: /usr/local/Cellar/python3/3.5.2_2/Frameworks/Python.framework/Versions/3.5/lib/python3.5/config-3.5m
 
 vim_ruby_path: /usr/bin/ruby
 
