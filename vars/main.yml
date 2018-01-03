@@ -13,16 +13,20 @@ vim_configure_log: /tmp/vim_config_log
 
 # Set up a dict that holds paths to the python configuration
 # libraries. The keys must be values of ansible_distribution
-vim_python_libs:
+# TODO: In future releases, these paths should read dynamically
+vim_libs:
   Suse:
     py2: /usr/lib64/python2.7/config-2.7m
     py3: /usr/lib64/python3.4/config-3.4m
+    lua: /usr/include
   Ubuntu:
     py2: /usr/lib/python2.7/config-x86_64-linux-gnu
     py3: /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
+    lua: /usr/include
   Darwin:
-    py2: /usr/local/Cellar/python/2.7.12_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/config/
-    py3: /usr/local/Cellar/python3/3.5.2_2/Frameworks/Python.framework/Versions/3.5/lib/python3.5/config-3.5m
+    py2: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/config
+    py3: /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/config-3.5m
+    lua: /usr/local/Cellar/luajit/2.0.5/
 
 vim_ruby_path: /usr/bin/ruby
 
@@ -39,7 +43,9 @@ vim_pip_executables:
 # Defaults to the .vim subdirectory of $HOME
 vim_config_dir: "{{ ansible_env.HOME }}/.vim"
 
-vim_install_dir: /usr
+# Install beside a may existing version of vim
+vim_install_dir: /usr/local
+
 
 vim_configure: >
  ./configure  
@@ -49,10 +55,11 @@ vim_configure: >
  --with-ruby-command={{ vim_ruby_path }}
  --enable-pythoninterp=yes
  --enable-python3interp=yes
- --with-python-config-dir={{ vim_python_libs[ansible_os_family].py2 }}
- --with-python3-config-dir={{ vim_python_libs[ansible_os_family].py3 }}
- --enable-luainterp
+ --with-python-config-dir={{ vim_libs[ansible_os_family].py2 }}
+ --with-python3-config-dir={{ vim_libs[ansible_os_family].py3 }}
+ --enable-luainterp=yes
  --with-luajit
+ --with-lua-prefix={{ vim_libs[ansible_os_family].lua }}
  --enable-cscope
  --enable-gui=auto
  --with-features=huge
