@@ -13,6 +13,8 @@
 - include_tasks: setup-suse.yml
   when: ansible_os_family == "Suse"
 
+- include_tasks: setup-macos.yml
+  when: ansible_os_family == "Darwin"
 
 - name: Check whether VIM was already build
   stat:
