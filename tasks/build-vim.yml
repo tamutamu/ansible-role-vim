@@ -51,5 +51,11 @@
 - name: Set alias for build vim
   lineinfile:
     path: "{{ ansible_env.HOME }}/.bashrc"
-    line: "alias wim='{{ vim_install_dir }}/bin/vim'"
+    line: "alias vim='{{ vim_install_dir }}/bin/vim'"
+    create: yes
+
+- name: Set alias for build vimdiff
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: "alias vimdiff='{{ vim_install_dir }}/bin/vimdiff'"
     create: yes
