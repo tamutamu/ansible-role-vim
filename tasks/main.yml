@@ -1,3 +1,4 @@
+# Check if GIT is available
 - name: Check wheter GIT is available
   stat: 
     path: "{{vim_git_executable}}"
@@ -7,6 +8,7 @@
     msg: "No GIT available"
   when: vim_has_git.stat.exists == False
 
+# Install requirements based on OS family
 - include_tasks: setup-ubuntu.yml
   when: ansible_os_family == "Ubuntu"
 
