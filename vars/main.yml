@@ -2,11 +2,14 @@ vim_repo_path: /opt/vim
 
 vim_git_executable: /usr/bin/git
 
+# Whether or not VIM should be compiled from source
+# Currently, setting this variable to `FALSE` leads to a
+# non-installation of vim
+vim_build_from_source: True
+
 # VIM Repos
 vim_remote_git_repo: https://github.com/vim/vim
 vim_remote_git_config_repo: https://github.com/windisch/vim.git
-
-vim_global_installation: True
 
 # Vars needed for configure
 vim_configure_log: /tmp/vim_config_log
@@ -28,7 +31,7 @@ vim_libs:
     py3: /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/config-3.5m
     lua: /usr/local/Cellar/luajit/2.0.5/
 
-vim_ruby_path: /usr/bin/ruby
+vim_ruby_binary: /usr/bin/ruby
 
 vim_python_requirements:
   - pip
@@ -43,16 +46,15 @@ vim_pip_executables:
 # Defaults to the .vim subdirectory of $HOME
 vim_config_dir: "{{ ansible_env.HOME }}/.vim"
 
-# Install beside a may existing version of vim
+# Path where vim should be intalled to
 vim_install_dir: /usr/local
-
 
 vim_configure: >
  ./configure  
  --enable-multibyte 
  --enable-perlinterp=dynamic
  --enable-rubyinterp=dynamic
- --with-ruby-command={{ vim_ruby_path }}
+ --with-ruby-command={{ vim_ruby_binary }}
  --enable-pythoninterp=yes
  --enable-python3interp=yes
  --with-python-config-dir={{ vim_libs[ansible_os_family].py2 }}

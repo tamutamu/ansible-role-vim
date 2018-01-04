@@ -16,17 +16,9 @@
 - include_tasks: setup-macos.yml
   when: ansible_os_family == "Darwin"
 
-- name: Check whether VIM was already build
-  stat:
-    path: '{{ vim_repo_path}}/src/vim'
-  register: vim_is_build
-
-- debug: msg="VIM is build already"
-  when: vim_is_build.stat.exists == True 
-
 # Build VIM is not already build
 - include_tasks: build-vim.yml
-  when: vim_is_build.stat.exists == False
+  when: vim_build_from_source == True
 
 # Configure VIM 
 - include_tasks: configure-vim.yml
