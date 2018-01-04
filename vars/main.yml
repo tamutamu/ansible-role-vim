@@ -19,15 +19,12 @@ vim_configure_log: /tmp/vim_config_log
 # TODO: In future releases, these paths should read dynamically
 vim_libs:
   Suse:
-    py2: /usr/lib64/python2.7/config-2.7m
     py3: /usr/lib64/python3.4/config-3.4m
     lua: /usr
   Ubuntu:
-    py2: /usr/lib/python2.7/config-x86_64-linux-gnu
     py3: /usr/lib/python3.5/config-3.5m-x86_64-linux-gnu
     lua: /usr
   Darwin:
-    py2: /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/config
     py3: /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/config-3.5m
     lua: /usr/local/Cellar/luajit/2.0.5/
 
@@ -57,7 +54,6 @@ vim_configure: >
  --with-ruby-command={{ vim_ruby_binary }}
  --enable-pythoninterp=yes
  --enable-python3interp=yes
- --with-python-config-dir={{ vim_libs[ansible_os_family].py2 }}
  --with-python3-config-dir={{ vim_libs[ansible_os_family].py3 }}
  --enable-luainterp=yes
  --with-luajit
