@@ -1,3 +1,13 @@
+# Read config dir of python
+# The following task can only be performaned after the requirements
+# are installed
+- name: Store configdir of Python
+  shell: python3-config --configdir
+  register: vim_python3
+
+- set_fact:
+    vim_python3_lib: "{{ vim_python3.stdout }}"
+
 - name: Cloning VIM repository
   git:
     repo: '{{ vim_remote_git_repo }}'
@@ -10,6 +20,11 @@
 
 - debug: msg="VIM is build already"
   when: vim_is_build.stat.exists == True 
+
+- name: Cleanup source directory
+  make:
+    target: distclean
+    chdir: '{{ vim_repo_path }}' 
 
 - name: Run Configure
   shell: "{{ vim_configure}}"
