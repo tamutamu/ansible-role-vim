@@ -7,6 +7,9 @@ vim_git_executable: /usr/bin/git
 # non-installation of vim
 vim_build_from_source: True
 
+# Wheter an alias should be set into the users bashrc
+vim_set_alias: False
+
 # VIM Repos
 vim_remote_git_repo: https://github.com/vim/vim
 vim_remote_git_config_repo: https://github.com/windisch/vim.git
