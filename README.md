@@ -8,6 +8,11 @@ To execute this role, superuser rights are needed as the build of VIM
 requires to install some development libraries as well as some Python
 libraries globally. Moreover, `git` has to be installed.
 
+Typically, I use VIM inside of `tmux` and to make them work together,
+some configurations to `tmux.conf` are added per default (this can be
+turned of, see [here](#variables)).
+
+
 ### MacOS
 Make sure that the installed `python` interpreters are installed from
 [here](https://www.python.org/downloads/mac-osx/). I had some issues
@@ -42,3 +47,7 @@ git clone https://github.com/windisch/ansible-role-vim roles/ansible-role-vim
     `$PATH`. Defaults to false.
 - `vim_lua_lib`: If you have a custom installation of `lua` and
     `luajit`, you should provide the path where `include/luajit-{version}/lua.h` can be found. 
+- `vim_configure_tmux`: The plugin `vim-tmux-navigator` needs some
+    lines in `tmux.conf` in order to make it work. These lines are
+    added, when this variable is set to true (which is the default
+    behaviour).
