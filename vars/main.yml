@@ -37,6 +37,7 @@ vim_config_dir: "{{ ansible_env.HOME }}/.vim"
 
 # The default configuration file of tmux
 vim_tmux_config_file: "{{ ansible_env.HOME }}/.tmux.conf"
+vim_configure_tmux: True
 
 # Path where vim should be intalled to
 vim_install_dir: /usr/local

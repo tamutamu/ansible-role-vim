@@ -71,6 +71,7 @@
 
 # Configure TMUX
 - name: Update tmux configuration
+  when: vim_configure_tmux == True
   blockinfile:
     path: "{{ vim_tmux_config_file }}"
     marker: "# BLOCK MANAGED BY ANSIBLE-VIM"
