@@ -49,5 +49,5 @@ git clone https://github.com/windisch/ansible-role-vim roles/ansible-role-vim
     `luajit`, you should provide the path where `include/luajit-{version}/lua.h` can be found. 
 - `vim_configure_tmux`: The plugin `vim-tmux-navigator` needs some
     lines in `tmux.conf` in order to make it work. These lines are
-    added, when this variable is set to true (which is the default
+    added if this variable is set to true (which is the default
     behaviour).
