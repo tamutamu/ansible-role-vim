@@ -8,7 +8,7 @@ vim_git_executable: /usr/bin/git
 vim_build_from_source: True
 
 # Wheter an alias should be set into the users bashrc
-vim_set_alias: False
+vim_set_alias: True
 
 # VIM Repos
 vim_remote_git_repo: https://github.com/vim/vim
@@ -34,6 +34,9 @@ vim_pip_executables:
 
 # Defaults to the .vim subdirectory of $HOME
 vim_config_dir: "{{ ansible_env.HOME }}/.vim"
+
+# The default configuration file of tmux
+vim_tmux_config_file: "{{ ansible_env.HOME }}/.tmux.conf"
 
 # Path where vim should be intalled to
 vim_install_dir: /usr/local
