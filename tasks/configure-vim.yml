@@ -44,6 +44,12 @@
     dest: "{{ ansible_env.HOME }}/.vimrc"
     state: link
 
+- name: Use VIM as git core tool
+  git_config:
+    name: core.editor
+    value: vim
+    scope: global
+
 - name: Use VIM as git diff-tool
   git_config:
     name: diff.tool
