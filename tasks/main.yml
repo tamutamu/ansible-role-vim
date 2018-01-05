@@ -9,13 +9,16 @@
   when: vim_has_git.stat.exists == False
 
 # Install requirements based on OS family
-- include_tasks: setup-ubuntu.yml
-  when: ansible_os_family == "Ubuntu"
+- name: Install requirements for Ubuntu/Debian
+  include_tasks: setup-ubuntu.yml
+  when: ansible_os_family == "Debian"
 
-- include_tasks: setup-suse.yml
+- name: Install requirements for Suse
+  include_tasks: setup-suse.yml
   when: ansible_os_family == "Suse"
 
-- include_tasks: setup-macos.yml
+- name: Install requirements for MacOS
+  include_tasks: setup-macos.yml
   when: ansible_os_family == "Darwin"
 
 # Build VIM is not already build
