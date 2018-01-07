@@ -18,4 +18,4 @@
     - libx11-dev 
     - libxpm-dev 
     - libxt-dev
- 
+  become: True

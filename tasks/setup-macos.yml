@@ -3,3 +3,5 @@
   with_items:
     - lua
     - luajit
+  become: True
+ 

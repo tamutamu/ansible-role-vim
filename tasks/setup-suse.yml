@@ -20,3 +20,4 @@
     - libX11-devel
     - libXpm-devel
     - libXt-devel
+  become: True
