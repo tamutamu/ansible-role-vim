@@ -69,6 +69,12 @@
     value: vimdiff
     scope: global
 
+- name: Git push only current
+  git_config:
+    name: push.default
+    value: upstream
+    scope: global
+
 # Configure TMUX
 - name: Update tmux configuration
   when: vim_configure_tmux == True
