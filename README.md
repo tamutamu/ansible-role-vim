@@ -23,12 +23,9 @@ using the interpreters installed with `homebrew`.
 Create a file `playbook.yml` with the following content:
 ```
 - hosts: all
-  tasks:
-   - include_role:
-       name: ansible-role-vim
-     vars:
-         - vim_install_dir: /home/user/myvim"
-         - vim_set_alias: True
+
+  roles:
+    - {role: ansible-role-vim, vim_install_dir: /home/user/myvim, vim_set_alias: True}
 ```
 In the same directory as `playbook.yml` lives, create a directory
 `roles`and clone the role repository with:
