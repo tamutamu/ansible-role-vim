@@ -17,19 +17,6 @@ vim_remote_git_config_repo: https://github.com/windisch/vim.git
 # Vars needed for configure
 vim_configure_log: /tmp/vim_config_log
 
-# Path to Lua library
-vim_lua_lib: "{{ '/usr/local/Cellar/luajit/2.0.5' if ansible_os_family == 'Darwin'  else '/usr' }}"
-
-vim_ruby_binary: /usr/bin/ruby
-
-vim_python_requirements:
-  - pip
-  - jedi
-
-vim_pip_executables:
-  - pip2
-  - pip3
-
 # Defaults to the .vim subdirectory of $HOME
 vim_config_dir: "{{ ansible_env.HOME }}/.vim"
 
@@ -39,26 +26,3 @@ vim_configure_tmux: True
 
 # Path where vim should be intalled to
 vim_install_dir: /usr/local
-
-vim_configure: >
- ./configure  
- --enable-multibyte 
- --enable-perlinterp=dynamic
- --enable-rubyinterp=dynamic
- --with-ruby-command={{ vim_ruby_binary }}
- --enable-pythoninterp=yes
- --enable-python3interp=yes
- --with-python3-config-dir={{ vim_python3_lib }}
- --enable-luainterp=yes
- --with-luajit
- --with-lua-prefix={{ vim_lua_lib }}
- --enable-cscope
- --enable-gui=auto
- --with-features=huge
- --with-x
- --enable-fontset
- --enable-largefile
- --disable-netbeans
- --enable-fail-if-missing
- --prefix={{ vim_install_dir }}
- >> {{ vim_configure_log }}
