@@ -8,20 +8,21 @@
 - set_fact:
     vim_python3_lib: "{{ vim_python3.stdout }}"
 
-- name: Cloning VIM repository
-  git:
-    repo: '{{ vim_remote_git_repo }}'
-    dest: '{{ vim_repo_path }}'
-  become: true
-
 - name: Check whether VIM was already build
   stat:
-    path: '{{ vim_repo_path}}/src/vim'
+    path: '{{ vim_repo_path }}/src/vim'
   register: vim_is_build
   become: true
 
 - debug: msg="VIM is build already"
   when: vim_is_build.stat.exists == True 
+
+- name: Clone VIM repository
+  git:
+    repo: '{{ vim_remote_git_repo }}'
+    dest: '{{ vim_repo_path }}'
+  when: vim_is_build.stat.exists == False
+  become: true
 
 - name: Cleanup source directory
   make:
