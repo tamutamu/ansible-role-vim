@@ -8,15 +8,16 @@ To execute this role, superuser rights are needed as the build of VIM
 requires to install some development libraries as well as some Python
 libraries globally. Moreover, `git` has to be installed.
 
-Typically, I use VIM inside of `tmux` and to make them work together,
-some configurations to `tmux.conf` are needed to make them work
-together perfectly. My [ansible-role-cmd-utils](https://github.com/windisch/ansible-role-cmd-utils) takes care of these configuration (and many more).
+Typically, I use VIM inside of `tmux` and to make them work together perfectly,
+some configurations to `tmux.conf` are needed. My 
+[ansible-role-cmd-utils](https://github.com/windisch/ansible-role-cmd-utils) 
+takes care of these configuration (and many more).
 
 ### MacOS
 
 Make sure that the installed `python` interpreters are installed from
 [here](https://www.python.org/downloads/mac-osx/). I had some issues
-using the interpreters comming with `homebrew`.
+using the interpreters coming with `homebrew`.
 
 ## Example Playbook
 
@@ -45,7 +46,8 @@ section).
 
 ## Variables
 
-- `vim_install_dir`: States where VIM should be installed with `make install` after building it. Defaults to `/usr/local`
+- `vim_install_dir`: States where VIM should be installed with `make install` 
+    after building it. Defaults to `/usr/local`
 - `vim_remote_git_config_repo`: URL of a cloneable git repository
     holding the configurations of vim. Assumes an `vimrc` to be there.
     Defaults to my configuration.
